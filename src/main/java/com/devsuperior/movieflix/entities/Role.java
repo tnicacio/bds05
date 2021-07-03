@@ -2,42 +2,27 @@ package com.devsuperior.movieflix.entities;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "tb_review")
-public class Review implements Serializable {
+@Table(name = "tb_role")
+public class Role implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	private String authority;
 	
-	@Column(columnDefinition="TEXT")
-	private String text;
-	
-	@ManyToOne
-	@JoinColumn(name = "movie_id")
-	private Movie movie;
-	
-	@ManyToOne
-	@JoinColumn(name = "user_id")
-	private User user;
-	
-	public Review() {}
+	public Role() {}
 
-	public Review(Long id, String text, Movie movie, User user) {
+	public Role(Long id, String authority) {
 		this.id = id;
-		this.text = text;
-		this.movie = movie;
-		this.user = user;
+		this.authority = authority;
 	}
 
 	public Long getId() {
@@ -48,28 +33,12 @@ public class Review implements Serializable {
 		this.id = id;
 	}
 
-	public String getText() {
-		return text;
+	public String getAuthority() {
+		return authority;
 	}
 
-	public void setText(String text) {
-		this.text = text;
-	}
-
-	public Movie getMovie() {
-		return movie;
-	}
-
-	public void setMovie(Movie movie) {
-		this.movie = movie;
-	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
+	public void setAuthority(String authority) {
+		this.authority = authority;
 	}
 
 	@Override
@@ -88,7 +57,7 @@ public class Review implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Review other = (Review) obj;
+		Role other = (Role) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -96,5 +65,5 @@ public class Review implements Serializable {
 			return false;
 		return true;
 	}
-	
+
 }
